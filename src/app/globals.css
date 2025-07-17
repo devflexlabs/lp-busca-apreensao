@@ -52,6 +52,9 @@ input:focus {
   ring-color: #f97316;
 }
 
+.button{
+  background-color: #E9823B;
+}
 /* Button hover effects */
 .button-hover {
   transition: all 0.3s ease;
