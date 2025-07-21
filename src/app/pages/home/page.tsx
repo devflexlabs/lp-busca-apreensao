@@ -23,15 +23,7 @@ declare global {
 }
 
 export default function HomePage() {
-
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src =
-            "https://d335luupugsy2.cloudfront.net/js/loader-scripts/9dc1319c-c730-4058-90a9-043a9a9775c6-loader.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }, []);
-
+  
     return (
         <div className='font-poppins'>
             <div className="min-h-screen bg-black text-white">

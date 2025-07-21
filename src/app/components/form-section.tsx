@@ -13,13 +13,7 @@ export default function FormSection() {
 
     const [progress, setProgress] = useState(0);
     const [isSubmitted, setIsSubmitted] = useState(false);
-
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "https://d335luupugsy2.cloudfront.net/js/loader-scripts/9dc1319c-c730-4058-90a9-043a9a9775c6-loader.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }, []);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         const firstGroupComplete = formData.nome && formData.email && formData.telefone && formData.banco;
@@ -57,31 +51,66 @@ export default function FormSection() {
         setProgress(0);
     };
 
-    const getStepStyle = (step: number) => {
-        if (step <= progress) {
-            return "w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center";
+    // Função para enviar dados para RD Station
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Monta payload conforme API de Conversão
+        const payload = {
+            conversion_identifier: 'lp_busca_apreensao',
+            name: formData.nome,
+            email: formData.email,
+            mobile_phone: formData.telefone,
+            banco: formData.banco,
+            parcelas_atraso: formData.parcelasAtraso,
+            vencimento_parcela: formData.vencimento,
+        };
+
+        try {
+            const response = await fetch('/api/rdstation-event', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                console.error('Erro no RD Station:', response.status, await response.text());
+            } else {
+                console.log('Conversão registrada com sucesso!');
+                setIsSubmitted(true);
+            }
+        } catch (error) {
+            console.error('❌ Falha ao enviar conversão:', error);
+        } finally {
+            setIsSubmitting(false);
         }
-        return "w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center";
+    };
+
+    const getStepStyle = (step: number) => {
+        return step <= progress
+            ? "w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center"
+            : "w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center";
     };
 
     const getIconStyle = (step: number) => {
-        if (step <= progress) {
-            return "w-6 h-6 text-white";
-        }
-        return "w-6 h-6 text-gray-500";
+        return step <= progress
+            ? "w-6 h-6 text-white"
+            : "w-6 h-6 text-gray-500";
     };
 
     return (
-        <section id="formulario-lp-busca-e-apreensao" onSubmit={(e) => {
-            e.preventDefault();
-            setIsSubmitted(true);
-        }} className="py-20 bg-orange-500 px-4 md:px-0">
+        <section
+            id="formulario-lp-busca-e-apreensao"
+            className="py-20 bg-orange-500 px-4 md:px-0"
+        >
             <div className="container mx-auto px-4">
                 {!isSubmitted ? (
                     <>
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-5xl font-bold w-full text-white mb-6">
-                                Resolva sua situação com uma <br className='md:hidden' /><span className='text-black font-extrabold'>ANÁLISE GRATUITA</span>
+                                Resolva sua situação com uma <br className='md:hidden' />
+                                <span className='text-black font-extrabold'>ANÁLISE GRATUITA</span>
                             </h2>
                             <p className="md:block hidden text-xl text-white">
                                 Com uma <strong>análise rápida e gratuita</strong>, descubra se você corre risco de perder seu carro, <strong>como evitar a busca e apreensão</strong> e <strong>reduzir suas parcelas</strong> de forma simples e sem enrolação.
@@ -114,7 +143,7 @@ export default function FormSection() {
                                 </div>
                             </div>
 
-                            <div className="space-y-4">
+                            <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <input
                                         type="text"
@@ -189,11 +218,12 @@ export default function FormSection() {
 
                                 <button
                                     type="submit"
-                                    className="bg-black flex mx-auto text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-black transition-colors font-bold cursor-pointer"
+                                    disabled={isSubmitting}
+                                    className="bg-black flex mx-auto text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-black transition-colors font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    Consultar
+                                    {isSubmitting ? 'Enviando...' : 'Consultar'}
                                 </button>
-                            </div>
+                            </form>
                         </div>
                     </>
                 ) : (
