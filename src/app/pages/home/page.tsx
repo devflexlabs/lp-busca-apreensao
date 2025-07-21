@@ -23,12 +23,21 @@ declare global {
 }
 
 export default function HomePage() {
-  
+
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src =
+            "https://d335luupugsy2.cloudfront.net/js/loader-scripts/9dc1319c-c730-4058-90a9-043a9a9775c6-loader.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
+    
     return (
         <div className='font-poppins'>
             <div className="min-h-screen bg-black text-white">
                 {/* Header */}
-               <Header />
+                <Header />
 
                 {/* Hero Section */}
                 <HeroSection />
@@ -53,15 +62,11 @@ export default function HomePage() {
                     strategy="afterInteractive"
                     onLoad={() => {
                         if (window.ZenviaChat) {
-                            const chat = new window.ZenviaChat('4cda3cf1c75a49408ba9a9d693240edd').embedded('button').build();
-
-                            // Esconde o botão depois de 1s para garantir que foi criado
-                            setTimeout(() => {
-                                const btn = document.querySelector('.znv-float-button');
-                                if (btn) {
-                                    btn.style.display = 'none';
-                                }
-                            }, 1000);
+                            const chat = new window.ZenviaChat('TOKEN').embedded('button').build();
+                            const btn = document.querySelector('.znv-float-button') as HTMLElement;
+                            if (btn) {
+                                btn.remove(); // remove do DOM direto
+                            }
                         }
                     }}
                 />
