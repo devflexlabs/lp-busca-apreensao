@@ -32,7 +32,7 @@ export default function HomePage() {
         script.async = true;
         document.body.appendChild(script);
     }, []);
-    
+
     return (
         <div className='font-poppins'>
             <div className="min-h-screen bg-black text-white">
@@ -62,11 +62,22 @@ export default function HomePage() {
                     strategy="afterInteractive"
                     onLoad={() => {
                         if (window.ZenviaChat) {
-                            const chat = new window.ZenviaChat('TOKEN').embedded('button').build();
-                            const btn = document.querySelector('.znv-float-button') as HTMLElement;
-                            if (btn) {
-                                btn.remove(); // remove do DOM direto
-                            }
+                            const chat = new window.ZenviaChat('4cda3cf1c75a49408ba9a9d693240edd')
+                                .embedded('button')
+                                .build();
+
+                            const observer = new MutationObserver(() => {
+                                const btn = document.querySelector('.znv-float-button');
+                                if (btn instanceof HTMLElement) {
+                                    btn.style.display = 'none';
+                                    observer.disconnect();
+                                }
+                            });
+
+                            observer.observe(document.body, {
+                                childList: true,
+                                subtree: true,
+                            });
                         }
                     }}
                 />
