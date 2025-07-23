@@ -25,9 +25,8 @@ export default function HeroSection() {
           <span className="text-orange-500"> Risco de perder seu carro?</span>
         </h1>
         <div className="mt-40 md:mt-0">
-          <p className="text-xl text-left md:text-centermd:text-2xl mb-8 text-gray-300">
-            Nossa equipe vai te ajudar a resolver com agilidade e segurança.{' '}
-            <strong>Não perca tempo!</strong>
+          <p className="text-xl text-left md:text-center md:text-2xl mb-8 text-gray-300">
+            <strong>Não espere perder seu carro!</strong> Tome uma atitude agora!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex flex-row flex-wrap gap-4 justify-center">
@@ -39,7 +38,7 @@ export default function HeroSection() {
               </button>
               <button
                 onClick={handleResolverAgora}
-                className="bg-orange-500 text-white font-bold px-8 py-3 rounded hover:bg-black hover:text-orange-500 transition-colors cursor-pointer text-center"
+                className="bg-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:opacity-80 transition-colors cursor-pointer text-center"
               >
                 RESOLVA AGORA!
               </button>

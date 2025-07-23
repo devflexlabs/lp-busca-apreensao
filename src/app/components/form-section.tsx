@@ -89,7 +89,7 @@ export default function FormSection() {
 
     const getStepStyle = (step: number) => {
         return step <= progress
-            ? "w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center"
+            ? "w-12 h-12 bg-[#3B5BA6] rounded-full flex items-center justify-center"
             : "w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center";
     };
 
@@ -102,24 +102,27 @@ export default function FormSection() {
     return (
         <section
             id="formulario"
-            className="py-20 bg-orange-500 px-4 md:px-0"
+            className="py-20 bg-[#3B5BA6] px-4 md:px-0"
         >
             <div className="container mx-auto px-4">
                 {!isSubmitted ? (
                     <>
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-5xl font-bold w-full text-white mb-6">
-                                Resolva sua situação com uma <br className='md:hidden' />
-                                <span className='text-black font-extrabold'>ANÁLISE GRATUITA</span>
+                            <h2 className="text-3xl md:block hidden md:text-5xl font-bold w-full text-white mb-6">
+                                Cada minuto aumenta o risco!
+                            </h2>
+                            <h2 className="text-3xl md:hidden block md:text-5xl font-bold w-full text-white mb-6">
+                                Solicite uma análise gratuita do seu caso
                             </h2>
                             <p className="md:block hidden text-xl text-white">
-                                Com uma <strong>análise rápida e gratuita</strong>, descubra se você corre risco de perder seu carro, <strong>como evitar a busca e apreensão</strong> e <strong>reduzir suas parcelas</strong> de forma simples e sem enrolação.
+                                Com uma <strong>análise rápida e gratuita</strong>, descubra como evitar
+                                a busca e apreensão, <strong>como evitar <br /> a busca e apreensão</strong> e <strong>reduzir suas parcelas</strong> de forma simples e sem enrolação.
                             </p>
                         </div>
 
                         <div className="max-w-2xl mx-auto bg-white rounded-lg p-8">
                             <div className="text-center mb-8">
-                                <h3 className="text-2xl font-bold text-orange-500 mb-4">
+                                <h3 className="text-2xl font-bold text-[#3B5BA6] mb-4">
                                     Nós entraremos em contato com você!
                                 </h3>
                                 <p className="text-gray-600">
@@ -188,7 +191,7 @@ export default function FormSection() {
 
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-[#3B5BA6] mb-1">
                                             Parcelas em atraso:
                                         </label>
                                         <input
@@ -202,7 +205,7 @@ export default function FormSection() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                                        <label className="block text-sm font-medium text-[#3B5BA6] mb-1">
                                             Vencimento da sua parcela:
                                         </label>
                                         <input
@@ -219,7 +222,7 @@ export default function FormSection() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="bg-black flex mx-auto text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-black transition-colors font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="bg-[#3B5BA6] flex mx-auto text-white px-8 py-3 rounded hover:bg-opacity-80 hover:text-black transition-colors font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? 'Enviando...' : 'Consultar'}
                                 </button>

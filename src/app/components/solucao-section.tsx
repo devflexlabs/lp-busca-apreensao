@@ -41,7 +41,7 @@ export default function SolucaoSection() {
                     </p>
                     <button
                         onClick={handleResolverAgora}
-                        className="bg-orange-500 text-white font-bold px-8 py-3 rounded hover:bg-white hover:text-orange-500 transition-colors cursor-pointer mx-auto flex"
+                        className="bg-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:opacity-80  transition-colors cursor-pointer mx-auto flex"
                     >
                         RESOLVA AGORA!
                     </button>

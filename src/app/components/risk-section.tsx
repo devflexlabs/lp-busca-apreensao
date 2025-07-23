@@ -34,33 +34,30 @@ export default function RiskSection() {
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                        Cada dia que passa <span className="text-orange-500">aumenta o risco</span> de perder seu carro
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-orange-[500]">
+                        Risco de perder o carro?
                     </h2>
                     <p className="text-xl text-gray-300">
-                        Evite maiores prejuízos agindo rápido!
+                        Cada dia atrasado pode custar seu veículo!
                     </p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {riskItems.map((item, index) => (
                         <div key={index} className="text-center">
-                            <div className="text-orange-500 mb-4 flex justify-center">
+                            <div className="text-white mb-4 flex justify-center">
                                 <item.icon className="w-16 h-16" />
                             </div>
                             <h3 className="text-xl font-bold mb-4 text-orange-500">{item.title}</h3>
                             <p className="text-gray-300 mb-4">
-                                {item.description}
-                            </p>
-                            <p className="text-white font-bold">
-                                {item.highlight}
+                                {item.description}  <span className="text-white font-bold">{item.highlight}</span>
                             </p>
                         </div>
                     ))}
                 </div>
 
                 <div className="text-center mt-12">
-                    <button className="border border-white text-white font-bold px-8 py-3 rounded hover:bg-white hover:text-black transition duration-300 ease-in-out cursor-pointer">
+                    <button className="border border-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:bg-[#3B5BA6] hover:text-white transition duration-300 ease-in-out cursor-pointer">
                         Solicitar atendimento
                     </button>
                 </div>
