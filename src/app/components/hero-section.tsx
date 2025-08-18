@@ -1,6 +1,84 @@
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Car, Shield, CircleCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function HeroSection() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    telefone: '',
+    banco: '',
+    parcelasAtraso: '',
+    vencimento: ''
+  });
+
+  const [progress, setProgress] = useState(0);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const firstGroupComplete = formData.nome && formData.email && formData.telefone;
+    const secondGroupComplete = formData.banco && formData.parcelasAtraso && formData.vencimento;
+
+    if (isSubmitted) {
+      setProgress(3);
+    } else if (firstGroupComplete && secondGroupComplete) {
+      setProgress(2);
+    } else if (firstGroupComplete) {
+      setProgress(1);
+    } else {
+      setProgress(0);
+    }
+  }, [formData, isSubmitted]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleBack = () => {
+    setFormData({
+      nome: '',
+      email: '',
+      telefone: '',
+      banco: '',
+      parcelasAtraso: '',
+      vencimento: ''
+    });
+    setIsSubmitted(false);
+    setProgress(0);
+  };
+
+  const handleSubmit = async () => {
+    // Verificar se todos os campos estão preenchidos
+    const allFieldsComplete = formData.nome && formData.email && formData.telefone &&
+      formData.banco && formData.parcelasAtraso && formData.vencimento;
+
+    if (!allFieldsComplete) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simular envio
+    setTimeout(() => {
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+    }, 2000);
+  };
+
+  const getStepStyle = (step) => {
+    const isActive = progress >= step - 1;
+    return `w-12 h-12 rounded-full flex items-center justify-center ${isActive ? 'bg-orange-500' : 'bg-gray-300'}`;
+  };
+
+  const getIconStyle = (step) => {
+    const isActive = progress >= step - 1;
+    return `w-6 h-6 ${isActive ? 'text-white' : 'text-gray-500'}`;
+  };
+
   const handleResolverAgora = () => {
     const zenviaBtn = document.querySelector('.znv-float-button');
     if (zenviaBtn && zenviaBtn instanceof HTMLElement) {
@@ -13,23 +91,30 @@ export default function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative h-[700px] md:min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black"
     >
       <div
         className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-30"
       />
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl text-left md:text-center md:text-6xl font-bold mb-6">
-          Parcelas atrasadas e
-          <br className="md:block hidden" />
-          <span className="text-orange-500"> Risco de perder seu carro?</span>
-        </h1>
-        <div className="mt-40 md:mt-0">
-          <p className="text-xl text-left md:text-center md:text-2xl mb-8 text-gray-300">
-            <strong>Não espere perder seu carro!</strong> Tome uma atitude agora!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <div className="flex flex-row flex-wrap gap-4 justify-center">
+
+      <div className="relative z-10 container mx-auto px-4 py-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Content */}
+          <div className="text-white space-y-8">
+            <div>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                Parcelas atrasadas e{' '}
+                <span className="text-orange-500">
+                  Risco de perder seu carro?
+                </span>
+              </h1>
+              <div className="space-y-4">
+                <p className="text-xl font-bold">Não espere perder seu carro!</p>
+                <p className="text-lg text-gray-300">Tome uma atitude agora!</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => window.open('https://grupoflex.com.br', '_blank')}
                 className="border border-white text-white font-bold px-8 py-3 rounded hover:bg-white hover:text-black transition-colors cursor-pointer"
@@ -38,14 +123,146 @@ export default function HeroSection() {
               </button>
               <button
                 onClick={handleResolverAgora}
-                className="bg-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:opacity-80 transition-colors cursor-pointer text-center"
+                className="bg-orange-500 text-white font-bold px-8 py-3 rounded hover:bg-orange-600 transition-colors cursor-pointer"
               >
-                RESOLVA AGORA!
+                ATENDIMENTO IMEDIATO
               </button>
             </div>
           </div>
+
+          {/* Right Column - Form */}
+          <div className="w-full max-w-lg mx-auto lg:max-w-none p-8">
+            {!isSubmitted ? (
+              <>
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    Nós entraremos em contato com você!
+                  </h3>
+                  <p className="text-gray-200 text-sm">
+                    Basta preencher o formulário abaixo com as suas informações de contato:
+                  </p>
+                </div>
+
+                {/* Progress indicators */}
+                <div className="flex justify-center mb-8">
+                  <div className="flex items-center space-x-4">
+                    <div className={getStepStyle(1)}>
+                      <Shield className={getIconStyle(1)} />
+                    </div>
+                    <div className="w-8 h-0.5 bg-gray-300" />
+                    <div className={getStepStyle(2)}>
+                      <Car className={getIconStyle(2)} />
+                    </div>
+                    <div className="w-8 h-0.5 bg-gray-300" />
+                    <div className={getStepStyle(3)}>
+                      <CircleCheck className={getIconStyle(3)} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      name="nome"
+                      placeholder="Nome"
+                      value={formData.nome}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      required
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <input
+                      type="tel"
+                      name="telefone"
+                      placeholder="Telefone"
+                      value={formData.telefone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="banco"
+                      placeholder="Banco"
+                      value={formData.banco}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-200 mb-1">
+                        Parcelas em atraso:
+                      </label>
+                      <input
+                        type="text"
+                        name="parcelasAtraso"
+                        placeholder="XXXXXX"
+                        value={formData.parcelasAtraso}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-200 mb-1">
+                        Vencimento:
+                      </label>
+                      <input
+                        type="date"
+                        name="vencimento"
+                        value={formData.vencimento}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    className="flex mx-auto max-w-[180px] bg-orange-500 text-white font-bold px-8 py-4 rounded hover:bg-orange-600 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed mt-6 cursor-pointer"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Consultar'}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="text-center">
+                <div className="mb-6">
+                  <CircleCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Enviado com sucesso!
+                  </h3>
+                  <p className="text-gray-600">
+                    Obrigado por enviar seus dados. Em breve, nossa equipe entrará em contato.
+                  </p>
+                </div>
+                <button
+                  onClick={handleBack}
+                  className="bg-gray-800 text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-white transition-colors font-bold"
+                >
+                  Voltar
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+
       <a
         href="#situacao"
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"

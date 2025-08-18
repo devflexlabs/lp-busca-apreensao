@@ -14,6 +14,8 @@ import SolucaoSection from '@/app/components/solucao-section'
 import FormSection from '@/app/components/form-section'
 import RiskSection from '@/app/components/risk-section'
 import Footer from '@/app/components/footer'
+import { WhatsAppForm } from '@/app/components/whatsapp-form'
+import ReviewsCarousel from '@/app/components/reviews-carrousel'
 
 
 declare global {
@@ -23,14 +25,11 @@ declare global {
 }
 
 export default function HomePage() {
-
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        const script = document.createElement("script");
-        script.src =
-            "https://d335luupugsy2.cloudfront.net/js/loader-scripts/9dc1319c-c730-4058-90a9-043a9a9775c6-loader.js";
-        script.async = true;
-        document.body.appendChild(script);
+        // expõe o controle do form no escopo global
+        (window as any).abrirFormularioWhatsApp = () => setIsOpen(true);
     }, []);
 
     return (
@@ -51,11 +50,16 @@ export default function HomePage() {
                 {/* Form Section */}
                 <FormSection />
 
+                {/* Reviews Carrousel*/}
+                <ReviewsCarousel />
+
                 {/* Risk Section */}
                 <RiskSection />
 
                 {/* Footer */}
                 <Footer />
+
+                <WhatsAppForm isOpen={isOpen} setIsOpen={setIsOpen} />
 
                 <Script
                     src="https://static.zenvia.com/embed/js/zenvia-chat.min.js"

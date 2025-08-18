@@ -39,7 +39,7 @@ export default function Header() {
                         </DropdownMenu>
                     </div>
 
-                    <button className="hidden lg:block border border-orange-500 text-orange-500 font-bold px-4 py-2 rounded hover:bg-orange-500 hover:text-black transition-colors cursor-pointer">
+                    <button  onClick={() => (window as any).abrirFormularioWhatsApp()} className="hidden lg:block border border-white text-orange-500 font-bold px-4 py-2 rounded hover:bg-orange-500 hover:text-black transition-colors cursor-pointer">
                         Entrar em contato
                     </button>
                 </div>

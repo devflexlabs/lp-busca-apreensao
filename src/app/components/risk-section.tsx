@@ -57,7 +57,7 @@ export default function RiskSection() {
                 </div>
 
                 <div className="text-center mt-12">
-                    <button className="border border-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:bg-[#3B5BA6] hover:text-white transition duration-300 ease-in-out cursor-pointer">
+                    <button onClick={() => (window as any).abrirFormularioWhatsApp()} className="border border-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:bg-[#3B5BA6] hover:text-white transition duration-300 ease-in-out cursor-pointer">
                         Solicitar atendimento
                     </button>
                 </div>

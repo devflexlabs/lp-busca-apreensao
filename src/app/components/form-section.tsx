@@ -222,7 +222,7 @@ export default function FormSection() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="bg-[#3B5BA6] flex mx-auto text-white px-8 py-3 rounded hover:bg-opacity-80 hover:text-black transition-colors font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="bg-[#3B5BA6] flex mx-auto text-white px-8 py-3 rounded hover:bg-opacity-80 transition-colors font-bold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? 'Enviando...' : 'Consultar'}
                                 </button>
