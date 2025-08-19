@@ -246,7 +246,7 @@ export default function HeroSection() {
                         name="vencimento"
                         value={formData.vencimento}
                         onChange={handleInputChange}
-                        className="w-[150px] sm:w-[200px] px-4 py-3 bg-gray-100 rounded text-gray-800 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-full max-w-[350px] px-4 py-3 bg-gray-100 rounded text-gray-800 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
                   </div>
