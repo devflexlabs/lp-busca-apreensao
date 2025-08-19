@@ -30,7 +30,9 @@ export default function HeroSection() {
     }
   }, [formData, isSubmitted]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -69,12 +71,12 @@ export default function HeroSection() {
     }, 2000);
   };
 
-  const getStepStyle = (step) => {
+  const getStepStyle = (step: number) => {
     const isActive = progress >= step - 1;
     return `w-12 h-12 rounded-full flex items-center justify-center ${isActive ? 'bg-orange-500' : 'bg-gray-300'}`;
   };
 
-  const getIconStyle = (step) => {
+  const getIconStyle = (step: number) => {
     const isActive = progress >= step - 1;
     return `w-6 h-6 ${isActive ? 'text-white' : 'text-gray-500'}`;
   };

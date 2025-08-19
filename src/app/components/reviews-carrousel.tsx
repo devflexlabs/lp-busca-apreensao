@@ -28,7 +28,7 @@ export default function ReviewsCarousel() {
   const handlers = useSwipeable({
     onSwipedLeft: () => nextSlide(),
     onSwipedRight: () => prevSlide(),
-    preventDefaultTouchmoveEvent: true,
+    preventScrollOnSwipe: true,
     trackMouse: true,
   });
 
@@ -119,9 +119,8 @@ export default function ReviewsCarousel() {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-3 h-3 rounded-full cursor-pointer ${
-              index === current ? "bg-[#3B5BA6]" : "bg-gray-500"
-            }`}
+            className={`w-3 h-3 rounded-full cursor-pointer ${index === current ? "bg-[#3B5BA6]" : "bg-gray-500"
+              }`}
           />
         ))}
       </div>

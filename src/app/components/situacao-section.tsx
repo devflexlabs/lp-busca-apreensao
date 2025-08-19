@@ -38,7 +38,7 @@ export default function SituacaoSection() {
         setCurrentSlide((prev) => (prev - 1 + situacaoCards.length) % situacaoCards.length);
     };
 
-    const goToSlide = (index) => {
+    const goToSlide = (index: number) => {
         setCurrentSlide(index);
     };
 
