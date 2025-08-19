@@ -151,7 +151,7 @@ export default function HeroSection() {
           </div>
 
           {/* Right Column - Form */}
-          <div className="w-full max-w-lg mx-auto lg:max-w-none p-8">
+          <div className="w-full max-w-lg sm:max-w-full mx-auto p-4 sm:p-8">
             {!isSubmitted ? (
               <>
                 <div className="text-center mb-8">
@@ -181,7 +181,7 @@ export default function HeroSection() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input
                       type="text"
                       name="nome"
