@@ -211,8 +211,8 @@ export default function HeroSection() {
                   </div>
 
                   {/* Parcelas e Vencimento */}
-                  <div className="flex flex-col sm:flex-row gap-4 mx-auto justify-center">
-                    <div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="w-full min-w-0">
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Parcelas em atraso:
                       </label>
@@ -222,10 +222,11 @@ export default function HeroSection() {
                         placeholder="XXXXXX"
                         value={formData.parcelasAtraso}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-full min-w-0 px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
-                    <div>
+
+                    <div className="w-full min-w-0">
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Vencimento:
                       </label>
@@ -234,7 +235,7 @@ export default function HeroSection() {
                         name="vencimento"
                         value={formData.vencimento}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-full min-w-0 appearance-none px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
                   </div>
