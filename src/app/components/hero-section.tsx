@@ -117,7 +117,7 @@ export default function HeroSection() {
         className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-30"
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-12">
+      <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="text-white space-y-8">
