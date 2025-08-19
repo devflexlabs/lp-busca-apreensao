@@ -174,7 +174,7 @@ export default function HeroSection() {
                       placeholder="Nome"
                       value={formData.nome}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full px-4 py-3 h-14 sm:h-12 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       required
                     />
                     <Input
@@ -183,7 +183,7 @@ export default function HeroSection() {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full px-4 py-3 h-14 sm:h-12 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       required
                     />
                   </div>
@@ -196,7 +196,7 @@ export default function HeroSection() {
                       placeholder="Telefone"
                       value={formData.telefone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full px-4 py-3 h-14 sm:h-12 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       required
                     />
                     <Input
@@ -205,13 +205,14 @@ export default function HeroSection() {
                       placeholder="Banco"
                       value={formData.banco}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full px-4 py-3 h-14 sm:h-12 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       required
                     />
                   </div>
 
                   {/* Parcelas e Vencimento */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Parcelas em atraso */}
                     <div className="w-full min-w-0">
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Parcelas em atraso:
@@ -222,20 +223,42 @@ export default function HeroSection() {
                         placeholder="XXXXXX"
                         value={formData.parcelasAtraso}
                         onChange={handleInputChange}
-                        className="w-full min-w-0 px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-full min-w-0 h-14 sm:h-12 px-4 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
 
+                    {/* Vencimento */}
                     <div className="w-full min-w-0">
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Vencimento:
                       </label>
+
+                      {/* Mobile: placeholder visível */}
+                      <Input
+                        type="text"
+                        name="vencimento"
+                        placeholder="Selecione uma data"
+                        value={formData.vencimento}
+                        onFocus={(e) => {
+                          e.currentTarget.type = 'date';
+                          // abre o datepicker no iOS/Android e mantém valor
+                          requestAnimationFrame(() => e.currentTarget.showPicker?.());
+                        }}
+                        onBlur={(e) => {
+                          // se o usuário não selecionou nada, volta pra text pra manter o placeholder
+                          if (!e.currentTarget.value) e.currentTarget.type = 'text';
+                        }}
+                        onChange={handleInputChange}
+                        className="block sm:hidden w-full min-w-0 h-14 px-4 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      />
+
+                      {/* Desktop/Tablet: date nativo */}
                       <Input
                         type="date"
                         name="vencimento"
                         value={formData.vencimento}
                         onChange={handleInputChange}
-                        className="w-full min-w-0 appearance-none px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="hidden sm:block w-full min-w-0 h-12 px-4 appearance-none bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
                     </div>
                   </div>
