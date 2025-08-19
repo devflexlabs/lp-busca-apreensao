@@ -240,10 +240,16 @@ export default function HeroSection() {
                         placeholder="Selecione uma data"
                         value={formData.vencimento}
                         onFocus={(e) => {
-                          e.currentTarget.type = 'date';
-                          // abre o datepicker no iOS/Android e mantém valor
-                          requestAnimationFrame(() => e.currentTarget.showPicker?.());
+                          const input = e.currentTarget;
+                          input.type = 'date';
+
+                          requestAnimationFrame(() => {
+                            if (input && typeof input.showPicker === 'function') {
+                              input.showPicker();
+                            }
+                          });
                         }}
+
                         onBlur={(e) => {
                           // se o usuário não selecionou nada, volta pra text pra manter o placeholder
                           if (!e.currentTarget.value) e.currentTarget.type = 'text';
