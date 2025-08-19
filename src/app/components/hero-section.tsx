@@ -181,114 +181,108 @@ export default function HeroSection() {
                 </div>
 
                 <div className="space-y-4">
+                  {/* Nome e Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input
+                    <Input
                       type="text"
                       name="nome"
                       placeholder="Nome"
                       value={formData.nome}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full"
                       required
                     />
-                    <input
+                    <Input
                       type="email"
                       name="email"
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full"
                       required
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <input
+                  {/* Telefone e Banco */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
                       type="tel"
                       name="telefone"
                       placeholder="Telefone"
                       value={formData.telefone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full"
                       required
                     />
-                    <input
+                    <Input
                       type="text"
                       name="banco"
                       placeholder="Banco"
                       value={formData.banco}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                      className="w-full"
                       required
                     />
                   </div>
 
+                  {/* Parcelas e Vencimento */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Parcelas em atraso:
                       </label>
-                      <input
+                      <Input
                         type="text"
                         name="parcelasAtraso"
                         placeholder="XXXXXX"
                         value={formData.parcelasAtraso}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-full"
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-200 mb-1">
                         Vencimento:
                       </label>
-                      <input
+                      <Input
                         type="date"
                         name="vencimento"
                         value={formData.vencimento}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800 border border-gray-200 focus:border-orange-500 focus:outline-none"
+                        className="w-[200px] sm:w-full" // largura fixa no mobile, full width em sm+
                       />
                     </div>
                   </div>
-
+                </>
+                ) : (
+                <div className="text-center">
+                  <div className="mb-6">
+                    <CircleCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      Enviado com sucesso!
+                    </h3>
+                    <p className="text-gray-600">
+                      Obrigado por enviar seus dados. Em breve, nossa equipe entrará em contato.
+                    </p>
+                  </div>
                   <button
-                    onClick={handleSubmit}
-                    disabled={isSubmitting}
-                    className="flex mx-auto max-w-[180px] bg-orange-500 text-white font-bold px-8 py-4 rounded hover:bg-orange-600 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed mt-6 cursor-pointer"
+                    onClick={handleBack}
+                    className="bg-gray-800 text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-white transition-colors font-bold"
                   >
-                    {isSubmitting ? 'Enviando...' : 'Consultar'}
+                    Voltar
                   </button>
                 </div>
-              </>
-            ) : (
-              <div className="text-center">
-                <div className="mb-6">
-                  <CircleCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                    Enviado com sucesso!
-                  </h3>
-                  <p className="text-gray-600">
-                    Obrigado por enviar seus dados. Em breve, nossa equipe entrará em contato.
-                  </p>
-                </div>
-                <button
-                  onClick={handleBack}
-                  className="bg-gray-800 text-orange-500 px-8 py-3 rounded hover:bg-orange-500 hover:text-white transition-colors font-bold"
-                >
-                  Voltar
-                </button>
-              </div>
             )}
+              </div>
           </div>
         </div>
-      </div>
 
-      <a
-        href="#situacao"
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-      >
-        <ChevronDown className="w-8 h-8 text-white" />
-      </a>
+        <a
+          href="#situacao"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+        >
+          <ChevronDown className="w-8 h-8 text-white" />
+        </a>
     </section>
   );
 }
