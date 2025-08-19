@@ -35,8 +35,12 @@ export default function ReviewsCarousel() {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return;
+
+    e.preventDefault(); // 🔹 impede scroll horizontal do site
+
     setCurrentX(e.touches[0].clientX);
   };
+
 
   const handleTouchEnd = () => {
     if (!isDragging) return;
@@ -66,6 +70,9 @@ export default function ReviewsCarousel() {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
+
+    e.preventDefault(); // 🔹 evita seleção de texto ou arrasto do site
+
     setCurrentX(e.clientX);
   };
 
@@ -119,7 +126,7 @@ export default function ReviewsCarousel() {
 
       <div
         ref={carouselRef}
-        className="relative max-w-3xl mx-auto h-[400px] sm:h-[500px] md:h-[600px] cursor-grab active:cursor-grabbing"
+        className="relative max-w-3xl mx-auto h-[400px] sm:h-[500px] md:h-[600px] cursor-grab active:cursor-grabbing select-none touch-pan-y"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -128,11 +135,11 @@ export default function ReviewsCarousel() {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <div className="relative w-full h-full overflow-hidden rounded-xl">
+        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-xl">
           <img
             src={reviews[current]}
             alt={`Review ${current + 1}`}
-            className="w-full h-full object-contain pointer-events-none rounded-xl shadow-lg"
+            className="max-h-full max-w-full object-contain pointer-events-none rounded-xl shadow-lg transition-all duration-500"
             draggable={false}
           />
         </div>
