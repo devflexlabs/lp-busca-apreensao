@@ -17,14 +17,23 @@ export default function HeroSection() {
 
   useEffect(() => {
     const firstGroupComplete = formData.nome && formData.email && formData.telefone;
-    const secondGroupComplete = formData.banco && formData.parcelasAtraso && formData.vencimento;
+    const bancoPreenchido = !!formData.banco;
+    const allFieldsComplete =
+      formData.nome &&
+      formData.email &&
+      formData.telefone &&
+      formData.banco &&
+      formData.parcelasAtraso &&
+      formData.vencimento;
 
     if (isSubmitted) {
       setProgress(3);
-    } else if (firstGroupComplete && secondGroupComplete) {
-      setProgress(2);
+    } else if (allFieldsComplete) {
+      setProgress(2); // todos os campos preenchidos
+    } else if (firstGroupComplete && bancoPreenchido) {
+      setProgress(1.5); // ativa o carro, mas não o check
     } else if (firstGroupComplete) {
-      setProgress(1);
+      setProgress(1); // só o primeiro ícone ativo
     } else {
       setProgress(0);
     }
@@ -72,12 +81,21 @@ export default function HeroSection() {
   };
 
   const getStepStyle = (step: number) => {
-    const isActive = progress >= step - 1;
-    return `w-12 h-12 rounded-full flex items-center justify-center ${isActive ? 'bg-orange-500' : 'bg-gray-300'}`;
+    const isActive =
+      (step === 1 && progress >= 1) ||
+      (step === 2 && progress >= 1.5) ||
+      (step === 3 && progress >= 2);
+
+    return `w-12 h-12 rounded-full flex items-center justify-center ${isActive ? 'bg-orange-500' : 'bg-gray-300'
+      }`;
   };
 
   const getIconStyle = (step: number) => {
-    const isActive = progress >= step - 1;
+    const isActive =
+      (step === 1 && progress >= 1) ||
+      (step === 2 && progress >= 1.5) ||
+      (step === 3 && progress >= 2);
+
     return `w-6 h-6 ${isActive ? 'text-white' : 'text-gray-500'}`;
   };
 
