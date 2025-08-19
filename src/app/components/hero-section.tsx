@@ -119,7 +119,7 @@ export default function HeroSection() {
               <div className="absolute inset-0 md:hidden bg-[url('/hero-bg.png')] bg-cover opacity-30"></div>
 
               {/* Conteúdo */}
-              <div className="relative z-10 md:p-0 p-6">
+              <div className="relative md:p-0 p-6">
                 <div>
                   <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
                     Parcelas atrasadas e <span className="text-orange-500">Risco de perder seu carro?</span>

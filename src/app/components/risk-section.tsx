@@ -32,7 +32,7 @@ export default function RiskSection() {
                 />
             </div>
 
-            <div className="container mx-auto px-4 relative z-10">
+            <div className="container mx-auto px-4 relative">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 text-orange-[500]">
                         Risco de perder o carro?

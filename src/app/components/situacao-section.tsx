@@ -62,14 +62,14 @@ export default function SituacaoSection() {
                             {/* Navigation Arrows */}
                             <button
                                 onClick={prevSlide}
-                                className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-[#3B5BA6] hover:bg-[#5A7CCF] text-white rounded-full p-2 transition-colors cursor-pointer"
+                                className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-[#3B5BA6] hover:bg-[#5A7CCF] text-white rounded-full p-2 transition-colors cursor-pointer"
                             >
                                 <ChevronLeft className="w-6 h-6" />
                             </button>
 
                             <button
                                 onClick={nextSlide}
-                                className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-[#3B5BA6]  text-white rounded-full p-2 transition-colors cursor-pointer"
+                                className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-[#3B5BA6]  text-white rounded-full p-2 transition-colors cursor-pointer"
                             >
                                 <ChevronRight className="w-6 h-6" />
                             </button>
@@ -147,7 +147,7 @@ export default function SituacaoSection() {
                             />
 
                             {/* Conteúdo da tela dentro da moldura */}
-                            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-0">
+                            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                                 <div className="w-[85%] h-[92%] bg-black rounded-[2rem] overflow-hidden">
                                     <iframe
                                         className="w-full h-full"

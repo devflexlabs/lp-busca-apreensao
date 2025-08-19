@@ -147,14 +147,14 @@ export default function ReviewsCarousel() {
         {/* Botões escondidos no mobile */}
         <button
           onClick={prevSlide}
-          className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-1 sm:-left-4 md:-left-16 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-md cursor-pointer transition-all z-10"
+          className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-1 sm:-left-4 md:-left-16 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-md cursor-pointer transition-all"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
 
         <button
           onClick={nextSlide}
-          className="hidden sm:block absolute top-1/2 -translate-y-1/2 right-1 sm:-right-4 md:-right-16 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-md cursor-pointer transition-all z-10"
+          className="hidden sm:block absolute top-1/2 -translate-y-1/2 right-1 sm:-right-4 md:-right-16 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full shadow-md cursor-pointer transition-all"
         >
           <ChevronRight className="w-6 h-6" />
         </button>

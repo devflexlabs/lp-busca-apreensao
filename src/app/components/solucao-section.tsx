@@ -40,7 +40,7 @@ export default function SolucaoSection() {
                 </div>
 
                 {/* Rodapé - ainda dentro da área com imagem de fundo no mobile */}
-                <div className="mb-0 relative z-10 md:p-0 p-6">
+                <div className="mb-0 relative md:p-0 p-6">
                     <h3 className="text-3xl font-bold mb-4">
                         <span className="text-orange-500">Mais tempo pra você</span>, menos preocupação com o carro
                     </h3>
