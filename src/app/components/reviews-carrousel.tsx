@@ -135,11 +135,11 @@ export default function ReviewsCarousel() {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
-        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-xl">
+        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-xl mt-[-80px] md:mt-0">
           <img
             src={reviews[current]}
             alt={`Review ${current + 1}`}
-            className="max-h-full max-w-full object-contain pointer-events-none rounded-xl shadow-lg transition-all duration-500"
+            className="max-h-full max-w-full object-contain pointer-events-none transition-all duration-500 p-5 md:p-0"
             draggable={false}
           />
         </div>
