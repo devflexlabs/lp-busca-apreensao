@@ -43,7 +43,7 @@ export default function SituacaoSection() {
     };
 
     return (
-        <section id="situacao" className="py-20 bg-black">
+        <section id="situacao" className="py-20 bg-gradient-to-tr">
             <div className="container mx-auto px-4">
                 <div className="grid lg:grid-cols-2 gap-12 items-center mx-auto">
                     {/* Left Column - Carousel */}

@@ -111,7 +111,7 @@ export default function ReviewsCarousel() {
   }, []);
 
   return (
-    <section className="py-20 bg-black text-center">
+    <section className="py-20 text-center">
       <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
         Saiba o que os nossos clientes{" "}
         <span className="text-blue-500">têm a dizer</span>

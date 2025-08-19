@@ -102,40 +102,49 @@ export default function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black"
+      className="relative min-h-screen flex items-center justify-center"
     >
       <div
-        className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-30"
+        className="hidden md:block absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-30"
       />
 
-      <div className="relative container mx-auto px-4 py-20">
+      <div className="relative md:container md:mx-auto md:px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
 
           {/* Left Column */}
           <div className="text-white space-y-8">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                Parcelas atrasadas e <span className="text-orange-500">Risco de perder seu carro?</span>
-              </h1>
-              <div className="space-y-4">
-                <p className="text-xl font-bold">Não espere perder seu carro!</p>
-                <p className="text-lg text-gray-300">Tome uma atitude agora!</p>
-              </div>
-            </div>
+            {/* Conteúdo com imagem de fundo no mobile */}
+            <div className="relative">
+              {/* Imagem de fundo apenas no mobile */}
+              <div className="absolute inset-0 md:hidden bg-[url('/hero-bg.png')] bg-cover opacity-30"></div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button
-                onClick={() => window.open('https://grupoflex.com.br', '_blank')}
-                className="border border-white text-white font-bold px-8 py-3 rounded hover:bg-white hover:text-black transition-colors cursor-pointer"
-              >
-                Saiba Mais
-              </button>
-              <button
-                onClick={handleResolverAgora}
-                className="bg-orange-500 text-white font-bold px-8 py-3 rounded hover:bg-orange-600 transition-colors cursor-pointer"
-              >
-                ATENDIMENTO IMEDIATO
-              </button>
+              {/* Conteúdo */}
+              <div className="relative z-10 md:p-0 p-6">
+                <div>
+                  <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                    Parcelas atrasadas e <span className="text-orange-500">Risco de perder seu carro?</span>
+                  </h1>
+                  <div className="space-y-4">
+                    <p className="text-xl font-bold">Não espere perder seu carro!</p>
+                    <p className="text-lg text-gray-300">Tome uma atitude agora!</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                  <button
+                    onClick={() => window.open('https://grupoflex.com.br', '_blank')}
+                    className="border border-white text-white font-bold px-8 py-3 rounded hover:bg-white hover:text-black transition-colors cursor-pointer"
+                  >
+                    Saiba Mais
+                  </button>
+                  <button
+                    onClick={handleResolverAgora}
+                    className="bg-orange-500 text-white font-bold px-8 py-3 rounded hover:bg-orange-600 transition-colors cursor-pointer"
+                  >
+                    ATENDIMENTO IMEDIATO
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

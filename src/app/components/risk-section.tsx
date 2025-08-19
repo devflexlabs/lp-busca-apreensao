@@ -23,7 +23,7 @@ export default function RiskSection() {
     ];
 
     return (
-        <section id="ajuda" className="py-20 bg-black relative overflow-hidden md:h-[700px] px-4 md:px-0">
+        <section id="ajuda" className="py-20 relative overflow-hidden md:h-[700px] px-4 md:px-0">
             <div className="absolute inset-0 h-full">
                 <img
                     src="/carro-guinchado.jpg"

@@ -100,7 +100,7 @@ export default function FormSection() {
     return (
         <section
             id="formulario"
-            className="py-20 bg-[#3B5BA6] px-4 md:px-0"
+            className="py-20 px-4 md:px-0"
         >
             <div className="container mx-auto px-4">
                 {!isSubmitted ? (

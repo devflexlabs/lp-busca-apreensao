@@ -34,7 +34,7 @@ export default function HomePage() {
 
     return (
         <div className='font-poppins'>
-            <div className="min-h-screen bg-black text-white">
+            <div className="min-h-screen bg-gradient-to-tl from-black via-gray-900 to-black text-white">
                 {/* Header */}
                 <Header />
 
