@@ -99,6 +99,19 @@ export default function HeroSection() {
     else console.log('Botão do Zenvia não encontrado');
   };
 
+  // converte de YYYY-MM-DD para DD/MM/YYYY
+  const formatDisplayDate = (isoDate: string) => {
+    if (!isoDate) return '';
+    const [year, month, day] = isoDate.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
+  // converte de DD/MM/YYYY para YYYY-MM-DD
+  const parseDisplayDate = (displayDate: string) => {
+    const [day, month, year] = displayDate.split('/');
+    if (!day || !month || !year) return '';
+    return `${year}-${month}-${day}`;
+  };
   return (
     <section
       id="inicio"
@@ -246,24 +259,12 @@ export default function HeroSection() {
                       <Input
                         type="text"
                         name="vencimento"
-                        placeholder="Selecione uma data"
-                        value={formData.vencimento}
-                        onFocus={(e) => {
-                          const input = e.currentTarget;
-                          input.type = 'date';
-
-                          requestAnimationFrame(() => {
-                            if (input && typeof input.showPicker === 'function') {
-                              input.showPicker();
-                            }
-                          });
+                        placeholder="DD/MM/AAAA"
+                        value={formatDisplayDate(formData.vencimento)}
+                        onChange={(e) => {
+                          const parsed = parseDisplayDate(e.target.value);
+                          setFormData(prev => ({ ...prev, vencimento: parsed }));
                         }}
-
-                        onBlur={(e) => {
-                          // se o usuário não selecionou nada, volta pra text pra manter o placeholder
-                          if (!e.currentTarget.value) e.currentTarget.type = 'text';
-                        }}
-                        onChange={handleInputChange}
                         className="block sm:hidden w-full min-w-0 h-14 px-4 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
 
@@ -272,9 +273,12 @@ export default function HeroSection() {
                         type="date"
                         name="vencimento"
                         value={formData.vencimento}
-                        onChange={handleInputChange}
+                        onChange={(e) =>
+                          setFormData(prev => ({ ...prev, vencimento: e.target.value }))
+                        }
                         className="hidden sm:block w-full min-w-0 h-12 px-4 appearance-none bg-gray-100 rounded text-gray-800 placeholder-gray-500 border border-gray-200 focus:border-orange-500 focus:outline-none"
                       />
+
                     </div>
                   </div>
 

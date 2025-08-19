@@ -97,6 +97,19 @@ export default function FormSection() {
         `${step <= progress ? "text-white" : "text-gray-500"} 
    w-5 h-5 sm:w-6 sm:h-6`;
 
+    // converte de YYYY-MM-DD para DD/MM/YYYY
+    const formatDisplayDate = (isoDate: string) => {
+        if (!isoDate) return '';
+        const [year, month, day] = isoDate.split('-');
+        return `${day}/${month}/${year}`;
+    };
+
+    // converte de DD/MM/YYYY para YYYY-MM-DD
+    const parseDisplayDate = (displayDate: string) => {
+        const [day, month, year] = displayDate.split('/');
+        if (!day || !month || !year) return '';
+        return `${year}-${month}-${day}`;
+    };
     return (
         <section
             id="formulario"
@@ -208,17 +221,34 @@ export default function FormSection() {
                                             required
                                         />
                                     </div>
-                                    <div>
+                                    {/* Vencimento */}
+                                    {/* Vencimento */}
+                                    <div className="w-full min-w-0">
                                         <label className="block text-sm font-medium text-[#3B5BA6] mb-1">
                                             Vencimento da sua parcela:
                                         </label>
+
+                                        {/* Mobile: placeholder visível */}
+                                        {/* Mobile */}
+                                        <input
+                                            type="text"
+                                            name="vencimento"
+                                            placeholder="DD/MM/AAAA"
+                                            value={formatDisplayDate(formData.vencimento)}
+                                            onChange={(e) => {
+                                                const parsed = parseDisplayDate(e.target.value);
+                                                setFormData(prev => ({ ...prev, vencimento: parsed }));
+                                            }}
+                                            className="block sm:hidden w-full h-14 px-4 bg-gray-100 rounded text-gray-800 placeholder-gray-500 border focus:border-[#3B5BA6] focus:outline-none"
+                                        />
+
+                                        {/* Desktop / Tablet */}
                                         <input
                                             type="date"
                                             name="vencimento"
                                             value={formData.vencimento}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-3 bg-gray-100 rounded text-gray-800"
-                                            required
+                                            onChange={(e) => setFormData(prev => ({ ...prev, vencimento: e.target.value }))}
+                                            className="hidden sm:block w-full h-12 px-4 appearance-none bg-gray-100 rounded text-gray-800 placeholder-gray-500 focus:border-[#3B5BA6] focus:outline-none"
                                         />
                                     </div>
                                 </div>
