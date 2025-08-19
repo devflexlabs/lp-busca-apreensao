@@ -115,10 +115,10 @@ export default function HeroSection() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center"
+      className="relative min-h-screen flex items-center justify-center bg-black/70 backdrop-blur-xs"
     >
       <div
-        className="hidden md:block absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-30"
+        className="hidden md:block absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center opacity-50"
       />
 
       <div className="relative md:container md:mx-auto md:px-4 py-20">

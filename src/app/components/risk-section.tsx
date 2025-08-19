@@ -23,12 +23,12 @@ export default function RiskSection() {
     ];
 
     return (
-        <section id="ajuda" className="py-20 relative overflow-hidden md:h-[700px] px-4 md:px-0">
+        <section id="ajuda" className="py-20 relative overflow-hidden md:h-[700px] px-4 md:px-0 bg-black/70 backdrop-blur-xs">
             <div className="absolute inset-0 h-full">
                 <img
                     src="/carro-guinchado.jpg"
                     alt="Imagem de fundo carro guinchado"
-                    className="w-full h-full object-cover opacity-30"
+                    className="w-full h-full object-cover opacity-40"
                 />
             </div>
 
@@ -57,7 +57,7 @@ export default function RiskSection() {
                 </div>
 
                 <div className="text-center mt-12">
-                    <button onClick={() => (window as any).abrirFormularioWhatsApp()} className="border border-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:bg-[#3B5BA6] hover:text-white transition duration-300 ease-in-out cursor-pointer">
+                    <button onClick={() => (window as any).abrirFormularioWhatsApp()} className="bg-orange-500 border border-black text-white font-bold px-8 py-3 rounded hover:opacity-80 hover:text-white transition duration-300 ease-in-out cursor-pointer">
                         Solicitar atendimento
                     </button>
                 </div>

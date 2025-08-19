@@ -9,9 +9,9 @@ export default function SolucaoSection() {
     };
 
     return (
-        <section id="solucao" className="relative py-20 h-[980px] px-4 md:px-0">
+        <section id="solucao" className="relative py-20 h-[980px] px-4 md:px-0 bg-black/70 backdrop-blur-xs">
             {/* Imagem de fundo */}
-            <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 opacity-40">
                 {/* Desktop */}
                 <img
                     src="/homem-dirigindo.png"
@@ -49,7 +49,7 @@ export default function SolucaoSection() {
                     </p>
                     <button
                         onClick={handleResolverAgora}
-                        className="bg-[#3B5BA6] text-white font-bold px-8 py-3 rounded hover:opacity-80  transition-colors cursor-pointer mx-auto flex"
+                        className="bg-white text-orange-500 font-bold px-8 py-3 rounded hover:opacity-80  transition-colors cursor-pointer mx-auto flex"
                     >
                         RESOLVA AGORA!
                     </button>
