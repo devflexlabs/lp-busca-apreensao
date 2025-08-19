@@ -87,17 +87,15 @@ export default function FormSection() {
         }
     };
 
-    const getStepStyle = (step: number) => {
-        return step <= progress
-            ? "w-12 h-12 bg-[#3B5BA6] rounded-full flex items-center justify-center"
-            : "w-12 h-12 bg-gray-300 rounded-full flex items-center justify-center";
-    };
+    // tamanhos responsivos dos steps
+    const getStepStyle = (step: number) =>
+        `${step <= progress ? "bg-[#3B5BA6]" : "bg-gray-300"} 
+   rounded-full flex items-center justify-center shrink-0
+   w-10 h-10 sm:w-12 sm:h-12`;
 
-    const getIconStyle = (step: number) => {
-        return step <= progress
-            ? "w-6 h-6 text-white"
-            : "w-6 h-6 text-gray-500";
-    };
+    const getIconStyle = (step: number) =>
+        `${step <= progress ? "text-white" : "text-gray-500"} 
+   w-5 h-5 sm:w-6 sm:h-6`;
 
     return (
         <section
@@ -131,17 +129,23 @@ export default function FormSection() {
                             </div>
 
                             <div className="flex justify-center mb-8">
-                                <div className="flex items-center space-x-4">
-                                    <div className={getStepStyle(1)}>
-                                        <Shield className={getIconStyle(1)} />
-                                    </div>
-                                    <div className="w-16 h-0.5 bg-gray-300" />
-                                    <div className={getStepStyle(2)}>
-                                        <Car className={getIconStyle(2)} />
-                                    </div>
-                                    <div className="w-16 h-0.5 bg-gray-300" />
-                                    <div className={getStepStyle(3)}>
-                                        <CircleCheck className={getIconStyle(3)} />
+                                <div className="w-full max-w-md sm:max-w-none px-2 overflow-hidden">
+                                    <div className="flex items-center gap-2 sm:gap-4">
+                                        <div className={getStepStyle(1)}>
+                                            <Shield className={getIconStyle(1)} />
+                                        </div>
+
+                                        <div className="flex-1 h-px bg-gray-300" />
+
+                                        <div className={getStepStyle(2)}>
+                                            <Car className={getIconStyle(2)} />
+                                        </div>
+
+                                        <div className="flex-1 h-px bg-gray-300" />
+
+                                        <div className={getStepStyle(3)}>
+                                            <CircleCheck className={getIconStyle(3)} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
