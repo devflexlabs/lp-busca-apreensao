@@ -167,7 +167,7 @@ export default function HeroSection() {
                 <div className="space-y-4">
 
                   {/* Nome e Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <Input
                       type="text"
                       name="nome"
